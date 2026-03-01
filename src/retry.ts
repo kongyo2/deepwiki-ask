@@ -27,8 +27,8 @@ export async function withRetry<T>(
     if (attempt > 0) {
       const delay =
         opts.initialDelayMs * opts.backoffMultiplier ** (attempt - 1);
-      console.error(
-        `[deepwiki-ask] Retry attempt ${attempt}/${opts.maxRetries} after ${delay}ms...`,
+      process.stderr.write(
+        `[deepwiki-ask] Retry attempt ${attempt}/${opts.maxRetries} after ${delay}ms...\n`,
       );
       await sleep(delay);
     }

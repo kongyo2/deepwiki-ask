@@ -70,10 +70,10 @@ Examples:
 async function main(): Promise<void> {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("[deepwiki-ask] MCP server running via stdio");
+  process.stderr.write("[deepwiki-ask] MCP server running via stdio\n");
 }
 
 main().catch((error: unknown) => {
-  console.error("[deepwiki-ask] Server error:", error);
+  process.stderr.write(`[deepwiki-ask] Server error: ${String(error)}\n`);
   process.exit(1);
 });
