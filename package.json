@@ -1,6 +1,6 @@
 {
   "name": "@kongyo2/deepwiki-ask",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "DeepWiki MCP ask_question ツールのラッパー MCPサーバー",
   "type": "module",
   "main": "dist/index.js",
