@@ -1,0 +1,33 @@
+name: Integration Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  inspector:
+    name: MCP Inspector CLI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: List tools
+        run: npx @modelcontextprotocol/inspector --cli node dist/index.js --method tools/list
+
+      - name: Call ask_question
+        run: npx @modelcontextprotocol/inspector --cli node dist/index.js --method tools/call --tool-name ask_question --tool-arg repoName=kongyo2/deepwiki-ask --tool-arg "question=What is this repository?"
